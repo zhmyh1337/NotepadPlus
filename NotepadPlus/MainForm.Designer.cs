@@ -29,6 +29,7 @@ namespace NotepadPlus
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TabPage firstTabPage;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +61,20 @@ namespace NotepadPlus
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            firstTabPage = new System.Windows.Forms.TabPage();
             this.menuStrip.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // firstTabPage
+            // 
+            firstTabPage.Location = new System.Drawing.Point(4, 29);
+            firstTabPage.Name = "firstTabPage";
+            firstTabPage.Size = new System.Drawing.Size(749, 487);
+            firstTabPage.TabIndex = 0;
+            firstTabPage.Text = "new 1";
+            firstTabPage.UseVisualStyleBackColor = true;
             // 
             // menuStrip
             // 
@@ -303,17 +316,30 @@ namespace NotepadPlus
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(firstTabPage);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 28);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(757, 520);
+            this.tabControl.TabIndex = 1;
+            this.tabControl.Click += new System.EventHandler(this.OnTabControlClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 548);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.Text = "Notepad+";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +377,7 @@ namespace NotepadPlus
         private System.Windows.Forms.ToolStripMenuItem formatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatSelectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formalAllToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl;
     }
 }
 
