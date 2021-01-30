@@ -18,6 +18,14 @@ namespace NotepadPlus
             InitializeComponent();
         }
 
+        private void AppendTabPage(string name)
+        {
+            tabControl.TabPages.Add(name);
+            var appendedTab = tabControl.TabPages[tabControl.TabCount - 1];
+            var richTextBox = new RichTextBox { Dock = DockStyle.Fill };
+            appendedTab.Controls.Add(richTextBox);
+        }
+
         private void OnTabControlClick(object sender, EventArgs e)
         {
             if (e is MouseEventArgs args && args.Button == MouseButtons.Middle)
@@ -31,6 +39,13 @@ namespace NotepadPlus
                     }
                 }
             }
+        }
+
+        private void OnMainFormLoad(object sender, EventArgs e)
+        {
+            AppendTabPage("new 1");
+            AppendTabPage("new 2");
+            AppendTabPage("new 3");
         }
     }
 }
