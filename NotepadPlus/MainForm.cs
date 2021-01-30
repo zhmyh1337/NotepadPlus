@@ -18,6 +18,11 @@ namespace NotepadPlus
             InitializeComponent();
         }
 
+        private RichTextBox ActiveRichTextBox
+        {
+            get => _tabControl.SelectedTab.Controls[0] as RichTextBox;
+        }
+
         private void AppendTabPage(string name)
         {
             _tabControl.TabPages.Add(name);
@@ -52,6 +57,28 @@ namespace NotepadPlus
         private void OnExitClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void RichTextBoxSelectionFormatWithDialog(RichTextBox richTextBox)
+        {
+            using (var fontDialog = new FontDialog())
+            {
+                fontDialog.Font = richTextBox.SelectionFont;
+                if (fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox.SelectionFont = fontDialog.Font;
+                }
+            }
+        }
+
+        private void OnSelectAllClick(object sender, EventArgs e)
+        {
+            ActiveRichTextBox.SelectAll();
+        }
+
+        private void OnFormatSelectionClick(object sender, EventArgs e)
+        {
+            RichTextBoxSelectionFormatWithDialog(ActiveRichTextBox);
         }
     }
 }

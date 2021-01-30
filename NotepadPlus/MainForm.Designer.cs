@@ -294,8 +294,10 @@ namespace NotepadPlus
             // selectAllToolStripMenuItem
             // 
             selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            selectAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             selectAllToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             selectAllToolStripMenuItem.Text = "Select All";
+            selectAllToolStripMenuItem.Click += new System.EventHandler(this.OnSelectAllClick);
             // 
             // formatToolStripMenuItem
             // 
@@ -311,6 +313,7 @@ namespace NotepadPlus
             formatSelectionToolStripMenuItem.Name = "formatSelectionToolStripMenuItem";
             formatSelectionToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
             formatSelectionToolStripMenuItem.Text = "Format Selection...";
+            formatSelectionToolStripMenuItem.Click += new System.EventHandler(this.OnFormatSelectionClick);
             // 
             // formalAllToolStripMenuItem
             // 
@@ -387,6 +390,7 @@ namespace NotepadPlus
             selectAllContextToolStripMenuItem.Name = "selectAllContextToolStripMenuItem";
             selectAllContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             selectAllContextToolStripMenuItem.Text = "Select All";
+            selectAllContextToolStripMenuItem.Click += new System.EventHandler(this.OnSelectAllClick);
             // 
             // toolStripSeparator6
             // 
@@ -398,6 +402,7 @@ namespace NotepadPlus
             formatSelectionContextToolStripMenuItem.Name = "formatSelectionContextToolStripMenuItem";
             formatSelectionContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             formatSelectionContextToolStripMenuItem.Text = "Format Selection...";
+            formatSelectionContextToolStripMenuItem.Click += new System.EventHandler(this.OnFormatSelectionClick);
             // 
             // _contextMenuStrip
             // 
