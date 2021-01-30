@@ -20,10 +20,10 @@ namespace NotepadPlus
 
         private void AppendTabPage(string name)
         {
-            tabControl.TabPages.Add(name);
-            var appendedTab = tabControl.TabPages[tabControl.TabCount - 1];
+            _tabControl.TabPages.Add(name);
+            var appendedTab = _tabControl.TabPages[_tabControl.TabCount - 1];
             var richTextBox = new RichTextBox { Dock = DockStyle.Fill };
-            richTextBox.ContextMenuStrip = contextMenuStrip;
+            richTextBox.ContextMenuStrip = _contextMenuStrip;
             appendedTab.Controls.Add(richTextBox);
         }
 

@@ -68,8 +68,8 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem selectAllContextToolStripMenuItem;
             System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
             System.Windows.Forms.ToolStripMenuItem formatSelectionContextToolStripMenuItem;
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tabControl = new System.Windows.Forms.TabControl();
+            this._contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._tabControl = new System.Windows.Forms.TabControl();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +108,7 @@ namespace NotepadPlus
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             formatSelectionContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
-            this.contextMenuStrip.SuspendLayout();
+            this._contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -399,10 +399,10 @@ namespace NotepadPlus
             formatSelectionContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             formatSelectionContextToolStripMenuItem.Text = "Format Selection...";
             // 
-            // contextMenuStrip
+            // _contextMenuStrip
             // 
-            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             cutContextToolStripMenuItem,
             copyContextToolStripMenuItem,
             pasteContextToolStripMenuItem,
@@ -410,25 +410,25 @@ namespace NotepadPlus
             selectAllContextToolStripMenuItem,
             toolStripSeparator6,
             formatSelectionContextToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(204, 146);
+            this._contextMenuStrip.Name = "_contextMenuStrip";
+            this._contextMenuStrip.Size = new System.Drawing.Size(204, 146);
             // 
-            // tabControl
+            // _tabControl
             // 
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 28);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(757, 520);
-            this.tabControl.TabIndex = 1;
-            this.tabControl.Click += new System.EventHandler(this.OnTabControlClick);
+            this._tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._tabControl.Location = new System.Drawing.Point(0, 28);
+            this._tabControl.Name = "_tabControl";
+            this._tabControl.SelectedIndex = 0;
+            this._tabControl.Size = new System.Drawing.Size(757, 520);
+            this._tabControl.TabIndex = 1;
+            this._tabControl.Click += new System.EventHandler(this.OnTabControlClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 548);
-            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this._tabControl);
             this.Controls.Add(menuStrip);
             this.MainMenuStrip = menuStrip;
             this.Name = "MainForm";
@@ -436,7 +436,7 @@ namespace NotepadPlus
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
+            this._contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,8 +444,8 @@ namespace NotepadPlus
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.TabControl _tabControl;
+        private System.Windows.Forms.ContextMenuStrip _contextMenuStrip;
     }
 }
 
