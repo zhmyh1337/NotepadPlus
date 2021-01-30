@@ -29,6 +29,7 @@ namespace NotepadPlus
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
@@ -60,6 +61,14 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
             System.Windows.Forms.MenuStrip menuStrip;
+            System.Windows.Forms.ToolStripMenuItem cutContextToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem copyContextToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem pasteContextToolStripMenuItem;
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+            System.Windows.Forms.ToolStripMenuItem selectAllContextToolStripMenuItem;
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+            System.Windows.Forms.ToolStripMenuItem formatSelectionContextToolStripMenuItem;
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,18 +100,16 @@ namespace NotepadPlus
             customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip = new System.Windows.Forms.MenuStrip();
+            cutContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            copyContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            pasteContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            selectAllContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            formatSelectionContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl
-            // 
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 28);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(757, 520);
-            this.tabControl.TabIndex = 1;
-            this.tabControl.Click += new System.EventHandler(this.OnTabControlClick);
             // 
             // fileToolStripMenuItem
             // 
@@ -212,8 +219,10 @@ namespace NotepadPlus
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             exitToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
             // 
             // editToolStripMenuItem
             // 
@@ -344,6 +353,76 @@ namespace NotepadPlus
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
             // 
+            // cutContextToolStripMenuItem
+            // 
+            cutContextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutContextToolStripMenuItem.Image")));
+            cutContextToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            cutContextToolStripMenuItem.Name = "cutContextToolStripMenuItem";
+            cutContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            cutContextToolStripMenuItem.Text = "Cut";
+            // 
+            // copyContextToolStripMenuItem
+            // 
+            copyContextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyContextToolStripMenuItem.Image")));
+            copyContextToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            copyContextToolStripMenuItem.Name = "copyContextToolStripMenuItem";
+            copyContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            copyContextToolStripMenuItem.Text = "Copy";
+            // 
+            // pasteContextToolStripMenuItem
+            // 
+            pasteContextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteContextToolStripMenuItem.Image")));
+            pasteContextToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            pasteContextToolStripMenuItem.Name = "pasteContextToolStripMenuItem";
+            pasteContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            pasteContextToolStripMenuItem.Text = "Paste";
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new System.Drawing.Size(200, 6);
+            // 
+            // selectAllContextToolStripMenuItem
+            // 
+            selectAllContextToolStripMenuItem.Name = "selectAllContextToolStripMenuItem";
+            selectAllContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            selectAllContextToolStripMenuItem.Text = "Select All";
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(200, 6);
+            // 
+            // formatSelectionContextToolStripMenuItem
+            // 
+            formatSelectionContextToolStripMenuItem.Name = "formatSelectionContextToolStripMenuItem";
+            formatSelectionContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            formatSelectionContextToolStripMenuItem.Text = "Format Selection...";
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            cutContextToolStripMenuItem,
+            copyContextToolStripMenuItem,
+            pasteContextToolStripMenuItem,
+            toolStripSeparator5,
+            selectAllContextToolStripMenuItem,
+            toolStripSeparator6,
+            formatSelectionContextToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(204, 146);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 28);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(757, 520);
+            this.tabControl.TabIndex = 1;
+            this.tabControl.Click += new System.EventHandler(this.OnTabControlClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -357,6 +436,7 @@ namespace NotepadPlus
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +445,7 @@ namespace NotepadPlus
         #endregion
 
         private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
     }
 }
 

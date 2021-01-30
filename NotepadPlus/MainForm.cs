@@ -23,6 +23,7 @@ namespace NotepadPlus
             tabControl.TabPages.Add(name);
             var appendedTab = tabControl.TabPages[tabControl.TabCount - 1];
             var richTextBox = new RichTextBox { Dock = DockStyle.Fill };
+            richTextBox.ContextMenuStrip = contextMenuStrip;
             appendedTab.Controls.Add(richTextBox);
         }
 
@@ -43,9 +44,14 @@ namespace NotepadPlus
 
         private void OnMainFormLoad(object sender, EventArgs e)
         {
-            AppendTabPage("new 1");
+            AppendTabPage("untitled");
             AppendTabPage("new 2");
             AppendTabPage("new 3");
+        }
+
+        private void OnExitClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
