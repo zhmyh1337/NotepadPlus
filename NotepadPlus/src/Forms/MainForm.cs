@@ -48,18 +48,6 @@ namespace NotepadPlus
             Close();
         }
 
-        private void RichTextBoxSelectionFormatWithDialog(RichTextBox richTextBox)
-        {
-            using (var fontDialog = new FontDialog())
-            {
-                fontDialog.Font = richTextBox.SelectionFont;
-                if (fontDialog.ShowDialog() == DialogResult.OK)
-                {
-                    richTextBox.SelectionFont = fontDialog.Font;
-                }
-            }
-        }
-
         private void OnSelectAllClick(object sender, EventArgs e)
         {
             _tabCollection.ActiveTab.RichTextBox.SelectAll();
@@ -67,7 +55,14 @@ namespace NotepadPlus
 
         private void OnFormatSelectionClick(object sender, EventArgs e)
         {
-            RichTextBoxSelectionFormatWithDialog(_tabCollection.ActiveTab.RichTextBox);
+            _tabCollection.ActiveTab.RichTextBox.SelectionFormatWithDialog();
+        }
+
+        private void OnFormatAllClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.DoActionKeepingSelection(
+                rtb => { rtb.SelectAll(); rtb.SelectionFormatWithDialog(); }
+            );
         }
 
         private readonly TabCollection _tabCollection;

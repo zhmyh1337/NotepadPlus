@@ -320,6 +320,7 @@ namespace NotepadPlus
             formalAllToolStripMenuItem.Name = "formalAllToolStripMenuItem";
             formalAllToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
             formalAllToolStripMenuItem.Text = "Formal All...";
+            formalAllToolStripMenuItem.Click += new System.EventHandler(this.OnFormatAllClick);
             // 
             // toolsToolStripMenuItem
             // 
