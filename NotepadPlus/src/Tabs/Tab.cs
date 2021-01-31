@@ -13,14 +13,16 @@ namespace NotepadPlus
 {
     class Tab
     {
-#nullable disable
         public event NonNullableEventHandler UnsavedContentChanged;
 
-        public RichTextBox RichTextBox { get => _tabPage.Controls[0] as RichTextBox; }
+        public TabPage TabPage { get; }
+
+#nullable disable
+        public RichTextBox RichTextBox { get => TabPage.Controls[0] as RichTextBox; }
 
         public Tab(TabPage tabPage, string filePath)
         {
-            _tabPage = tabPage;
+            TabPage = tabPage;
             FilePath = filePath;
 
             RichTextBox.TextChanged += OnRtbTextChanged;
@@ -31,31 +33,32 @@ namespace NotepadPlus
         {
             if (FilePath != null || UnsavedContent)
             {
-                Save();
+                TrySave();
             }
         }
 
-        public void Save()
+        public bool TrySave()
         {
             if (FilePath == null)
             {
-                SaveAs();
-                return;
+                return TrySaveAs();
             }
 
             try
             {
                 RichTextBox.SaveFile(FilePath, Utilities.FileExtensionToRichTextBoxStreamType(Path.GetExtension(FilePath)));
                 UnsavedContent = false;
+                return true;
             }
             catch (IOException e)
             {
                 Debug.WriteLine($"[{e.GetType()}] {e.Message}");
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        public void SaveAs()
+        public bool TrySaveAs()
         {
             var dialog = new SaveFileDialog
             {
@@ -65,15 +68,55 @@ namespace NotepadPlus
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 FilePath = dialog.FileName;
-                Save();
+                return TrySave();
             }
+            return false;
         }
 
         public string GetMainFormTitle() => $"{Name}{(UnsavedContent ? " •" : "")} - Notepad+";
 
+        public bool TryClose(Action<TabPage> activateTabPage)
+        {
+            if (!UnsavedContent)
+            {
+                return true;
+            }
+
+            activateTabPage.Invoke(TabPage);
+
+            bool untitledFile = FilePath == null;
+            string fileName = untitledFile ? "New file" : Name;
+
+            var dialogResult = MessageBox.Show($"{fileName} has been modified, save changes?",
+                "Save Changes?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+            switch (dialogResult)
+            {
+                case DialogResult.Yes:
+                {
+                    return TrySave();
+                }
+                case DialogResult.No:
+                {
+                    return true;
+                }
+                case DialogResult.Cancel:
+                {
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
         private void OnRtbTextChanged(object? sender, EventArgs e)
         {
             UnsavedContent = true;
+        }
+
+        private void UpdateDisplayedName()
+        {
+            TabPage.Text = Name + (UnsavedContent ? " •" : "");
         }
 
         private string Name
@@ -81,8 +124,8 @@ namespace NotepadPlus
             get => _name;
             set
             {
-                _tabPage.Text = value;
                 _name = value;
+                UpdateDisplayedName();
             }
         }
 
@@ -105,12 +148,12 @@ namespace NotepadPlus
                 _unsavedContent = value;
                 if (changed)
                 {
-                    UnsavedContentChanged?.Invoke(this, EventArgs.Empty);
+                    UnsavedContentChanged.Invoke(this, EventArgs.Empty);
+                    UpdateDisplayedName();
                 }
             }
         }
 
-        private readonly TabPage _tabPage;
         private string _name;
         private string? _filePath;
         private bool _unsavedContent = false;

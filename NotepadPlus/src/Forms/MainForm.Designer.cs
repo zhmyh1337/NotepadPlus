@@ -139,6 +139,7 @@ namespace NotepadPlus
             newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             newToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += new System.EventHandler(this.OnNewClick);
             // 
             // openToolStripMenuItem
             // 
@@ -208,12 +209,14 @@ namespace NotepadPlus
             closeFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
             closeFileToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             closeFileToolStripMenuItem.Text = "Close File";
+            closeFileToolStripMenuItem.Click += new System.EventHandler(this.OnCloseFileClick);
             // 
             // closeAllFilesToolStripMenuItem
             // 
             closeAllFilesToolStripMenuItem.Name = "closeAllFilesToolStripMenuItem";
             closeAllFilesToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             closeAllFilesToolStripMenuItem.Text = "Close All Files";
+            closeAllFilesToolStripMenuItem.Click += new System.EventHandler(this.OnCloseAllFilesClick);
             // 
             // toolStripSeparator2
             // 
@@ -449,7 +452,8 @@ namespace NotepadPlus
             this.Controls.Add(menuStrip);
             this.MainMenuStrip = menuStrip;
             this.Name = "MainForm";
-            this.Text = "untitled - Notepad+";
+            this.Text = "123 - Notepad+";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormClosing);
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();

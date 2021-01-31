@@ -28,9 +28,11 @@ namespace NotepadPlus
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             _tabCollection.AddTab();
-            _tabCollection.AddTab();
-            _tabCollection.AddTab();
-            _tabCollection.AddTab();
+        }
+
+        private void OnMainFormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !_tabCollection.CloseAllTabs();
         }
 
         private void OnExitClick(object sender, EventArgs e)
@@ -82,12 +84,12 @@ namespace NotepadPlus
 
         private void OnSaveClick(object sender, EventArgs e)
         {
-            _tabCollection.ActiveTab.Save();
+            _tabCollection.ActiveTab.TrySave();
         }
 
         private void OnSaveAsClick(object sender, EventArgs e)
         {
-            _tabCollection.ActiveTab.SaveAs();
+            _tabCollection.ActiveTab.TrySaveAs();
         }
 
         private void OnSaveAllClick(object sender, EventArgs e)
@@ -103,8 +105,23 @@ namespace NotepadPlus
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                _tabCollection.AddTab(dialog.FileName, true);
+                _tabCollection.AddTab(dialog.FileName);
             }
+        }
+
+        private void OnCloseFileClick(object sender, EventArgs e)
+        {
+            _tabCollection.TryCloseTab(_tabCollection.ActiveTab);
+        }
+
+        private void OnCloseAllFilesClick(object sender, EventArgs e)
+        {
+            _tabCollection.CloseAllTabs();
+        }
+
+        private void OnNewClick(object sender, EventArgs e)
+        {
+            _tabCollection.AddTab();
         }
 
         private readonly TabCollection _tabCollection;
