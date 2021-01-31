@@ -148,6 +148,7 @@ namespace NotepadPlus
             openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             openToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             openToolStripMenuItem.Text = "Open...";
+            openToolStripMenuItem.Click += new System.EventHandler(this.OnOpenClick);
             // 
             // saveToolStripMenuItem
             // 
@@ -438,7 +439,6 @@ namespace NotepadPlus
             this._tabControl.SelectedIndex = 0;
             this._tabControl.Size = new System.Drawing.Size(757, 520);
             this._tabControl.TabIndex = 1;
-            this._tabControl.Click += new System.EventHandler(this.OnTabControlClick);
             // 
             // MainForm
             // 

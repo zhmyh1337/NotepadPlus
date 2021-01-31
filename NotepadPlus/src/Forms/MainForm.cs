@@ -25,21 +25,6 @@ namespace NotepadPlus
             Text = e.NewTitle;
         }
 
-        private void OnTabControlClick(object sender, EventArgs e)
-        {
-            if (e is MouseEventArgs args && args.Button == MouseButtons.Middle)
-            {
-                var tabControl = sender as TabControl;
-                for (int i = 0; i < tabControl.TabCount; i++)
-                {
-                    if (tabControl.GetTabRect(i).Contains(args.X, args.Y))
-                    {
-                        Debug.WriteLine($"Closing tab {i} by MMB.");
-                    }
-                }
-            }
-        }
-
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             _tabCollection.AddTab();
@@ -107,7 +92,19 @@ namespace NotepadPlus
 
         private void OnSaveAllClick(object sender, EventArgs e)
         {
-            _tabCollection.ForEach(tab => tab.Save());
+            _tabCollection.ForEach(tab => tab.SaveFromSaveAll());
+        }
+
+        private void OnOpenClick(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = Program.FormatsFilter
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _tabCollection.AddTab(dialog.FileName, true);
+            }
         }
 
         private readonly TabCollection _tabCollection;

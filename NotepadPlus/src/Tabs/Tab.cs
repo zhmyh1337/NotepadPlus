@@ -27,6 +27,14 @@ namespace NotepadPlus
         }
 #nullable enable
 
+        public void SaveFromSaveAll()
+        {
+            if (FilePath != null || UnsavedContent)
+            {
+                Save();
+            }
+        }
+
         public void Save()
         {
             if (FilePath == null)
@@ -52,7 +60,7 @@ namespace NotepadPlus
             var dialog = new SaveFileDialog
             {
                 FileName = FilePath == null ? string.Empty : Path.GetFileName(FilePath),
-                Filter = "All Files (*.*)|*.*|Plain Text (*.txt)|*.txt|Rich text (*.rtf)|*.rtf|C# (*.cs)|*.cs"
+                Filter = Program.FormatsFilter
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
