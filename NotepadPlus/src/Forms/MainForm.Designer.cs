@@ -68,7 +68,7 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem selectAllContextToolStripMenuItem;
             System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
             System.Windows.Forms.ToolStripMenuItem formatSelectionContextToolStripMenuItem;
-            this._contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._rtbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._tabControl = new System.Windows.Forms.TabControl();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +108,7 @@ namespace NotepadPlus
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             formatSelectionContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
-            this._contextMenuStrip.SuspendLayout();
+            this._rtbContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -404,10 +404,10 @@ namespace NotepadPlus
             formatSelectionContextToolStripMenuItem.Text = "Format Selection...";
             formatSelectionContextToolStripMenuItem.Click += new System.EventHandler(this.OnFormatSelectionClick);
             // 
-            // _contextMenuStrip
+            // _rtbContextMenuStrip
             // 
-            this._contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this._contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._rtbContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this._rtbContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             cutContextToolStripMenuItem,
             copyContextToolStripMenuItem,
             pasteContextToolStripMenuItem,
@@ -415,8 +415,8 @@ namespace NotepadPlus
             selectAllContextToolStripMenuItem,
             toolStripSeparator6,
             formatSelectionContextToolStripMenuItem});
-            this._contextMenuStrip.Name = "_contextMenuStrip";
-            this._contextMenuStrip.Size = new System.Drawing.Size(204, 146);
+            this._rtbContextMenuStrip.Name = "_rtbContextMenuStrip";
+            this._rtbContextMenuStrip.Size = new System.Drawing.Size(204, 146);
             // 
             // _tabControl
             // 
@@ -441,7 +441,7 @@ namespace NotepadPlus
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
-            this._contextMenuStrip.ResumeLayout(false);
+            this._rtbContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -450,7 +450,7 @@ namespace NotepadPlus
         #endregion
 
         private System.Windows.Forms.TabControl _tabControl;
-        private System.Windows.Forms.ContextMenuStrip _contextMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip _rtbContextMenuStrip;
     }
 }
 

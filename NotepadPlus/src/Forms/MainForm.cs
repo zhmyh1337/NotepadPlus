@@ -16,20 +16,8 @@ namespace NotepadPlus
         public MainForm()
         {
             InitializeComponent();
-        }
 
-        private RichTextBox ActiveRichTextBox
-        {
-            get => _tabControl.SelectedTab.Controls[0] as RichTextBox;
-        }
-
-        private void AppendTabPage(string name)
-        {
-            _tabControl.TabPages.Add(name);
-            var appendedTab = _tabControl.TabPages[_tabControl.TabCount - 1];
-            var richTextBox = new RichTextBox { Dock = DockStyle.Fill };
-            richTextBox.ContextMenuStrip = _contextMenuStrip;
-            appendedTab.Controls.Add(richTextBox);
+            _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip);
         }
 
         private void OnTabControlClick(object sender, EventArgs e)
@@ -49,9 +37,10 @@ namespace NotepadPlus
 
         private void OnMainFormLoad(object sender, EventArgs e)
         {
-            AppendTabPage("untitled");
-            AppendTabPage("new 2");
-            AppendTabPage("new 3");
+            _tabCollection.AddTab();
+            _tabCollection.AddTab();
+            _tabCollection.AddTab();
+            _tabCollection.AddTab();
         }
 
         private void OnExitClick(object sender, EventArgs e)
@@ -73,12 +62,14 @@ namespace NotepadPlus
 
         private void OnSelectAllClick(object sender, EventArgs e)
         {
-            ActiveRichTextBox.SelectAll();
+            _tabCollection.ActiveTab.RichTextBox.SelectAll();
         }
 
         private void OnFormatSelectionClick(object sender, EventArgs e)
         {
-            RichTextBoxSelectionFormatWithDialog(ActiveRichTextBox);
+            RichTextBoxSelectionFormatWithDialog(_tabCollection.ActiveTab.RichTextBox);
         }
+
+        private readonly TabCollection _tabCollection;
     }
 }
