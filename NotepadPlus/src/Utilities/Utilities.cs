@@ -30,5 +30,14 @@ namespace NotepadPlus
                 }
             }
         }
+
+        public static RichTextBoxStreamType FileExtensionToRichTextBoxStreamType(string ext)
+        {
+            return ext switch
+            {
+                "rtf" => RichTextBoxStreamType.RichText,
+                _ => RichTextBoxStreamType.PlainText
+            };
+        }
     }
 }

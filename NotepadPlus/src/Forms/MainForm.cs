@@ -65,8 +65,6 @@ namespace NotepadPlus
             );
         }
 
-        private readonly TabCollection _tabCollection;
-
         private void OnCutClick(object sender, EventArgs e)
         {
             _tabCollection.ActiveTab.RichTextBox.Cut();
@@ -91,5 +89,22 @@ namespace NotepadPlus
         {
             _tabCollection.ActiveTab.RichTextBox.Redo();
         }
+
+        private void OnSaveClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.Save();
+        }
+
+        private void OnSaveAsClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.SaveAs();
+        }
+
+        private void OnSaveAllClick(object sender, EventArgs e)
+        {
+            _tabCollection.ForEach(tab => tab.Save());
+        }
+
+        private readonly TabCollection _tabCollection;
     }
 }

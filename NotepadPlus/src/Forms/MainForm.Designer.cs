@@ -157,6 +157,7 @@ namespace NotepadPlus
             saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             saveToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             saveToolStripMenuItem.Text = "Save";
+            saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -165,12 +166,14 @@ namespace NotepadPlus
             | System.Windows.Forms.Keys.S)));
             saveAsToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             saveAsToolStripMenuItem.Text = "Save As...";
+            saveAsToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // saveAllToolStripMenuItem
             // 
             saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
             saveAllToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             saveAllToolStripMenuItem.Text = "Save All";
+            saveAllToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAllClick);
             // 
             // toolStripSeparator
             // 
@@ -446,7 +449,7 @@ namespace NotepadPlus
             this.Controls.Add(menuStrip);
             this.MainMenuStrip = menuStrip;
             this.Name = "MainForm";
-            this.Text = "Notepad+";
+            this.Text = "untitled - Notepad+";
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
