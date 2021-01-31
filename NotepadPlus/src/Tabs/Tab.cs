@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,13 +13,19 @@ namespace NotepadPlus
 {
     class Tab
     {
+#nullable disable
+        public event NonNullableEventHandler UnsavedContentChanged;
+
+        public RichTextBox RichTextBox { get => _tabPage.Controls[0] as RichTextBox; }
+
         public Tab(TabPage tabPage, string filePath)
         {
             _tabPage = tabPage;
             FilePath = filePath;
-        }
 
-        public RichTextBox RichTextBox { get => _tabPage.Controls[0] as RichTextBox; }
+            RichTextBox.TextChanged += OnRtbTextChanged;
+        }
+#nullable enable
 
         public void Save()
         {
@@ -30,7 +38,7 @@ namespace NotepadPlus
             try
             {
                 RichTextBox.SaveFile(FilePath, Utilities.FileExtensionToRichTextBoxStreamType(Path.GetExtension(FilePath)));
-                _unsavedContent = false;
+                UnsavedContent = false;
             }
             catch (IOException e)
             {
@@ -41,14 +49,23 @@ namespace NotepadPlus
 
         public void SaveAs()
         {
-            var dialog = new SaveFileDialog();
-            dialog.FileName = FilePath == null ? string.Empty : Path.GetFileName(FilePath);
-            dialog.Filter = "All Files (*.*)|*.*|Plain Text (*.txt)|*.txt|Rich text (*.rtf)|*.rtf|C# (*.cs)|*.cs";
+            var dialog = new SaveFileDialog
+            {
+                FileName = FilePath == null ? string.Empty : Path.GetFileName(FilePath),
+                Filter = "All Files (*.*)|*.*|Plain Text (*.txt)|*.txt|Rich text (*.rtf)|*.rtf|C# (*.cs)|*.cs"
+            };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 FilePath = dialog.FileName;
                 Save();
             }
+        }
+
+        public string GetMainFormTitle() => $"{Name}{(UnsavedContent ? " •" : "")} - Notepad+";
+
+        private void OnRtbTextChanged(object? sender, EventArgs e)
+        {
+            UnsavedContent = true;
         }
 
         private string Name
@@ -61,7 +78,7 @@ namespace NotepadPlus
             }
         }
 
-        private string FilePath
+        private string? FilePath
         {
             get => _filePath;
             set
@@ -71,9 +88,23 @@ namespace NotepadPlus
             }
         }
 
+        public bool UnsavedContent
+        {
+            get => _unsavedContent;
+            private set
+            {
+                bool changed = _unsavedContent != value;
+                _unsavedContent = value;
+                if (changed)
+                {
+                    UnsavedContentChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
         private readonly TabPage _tabPage;
         private string _name;
-        private string _filePath;
+        private string? _filePath;
         private bool _unsavedContent = false;
     }
 }

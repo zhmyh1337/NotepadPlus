@@ -17,7 +17,12 @@ namespace NotepadPlus
         {
             InitializeComponent();
 
-            _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip);
+            _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip, OnMainFormTitleUpdating);
+        }
+
+        private void OnMainFormTitleUpdating(object sender, MainFormTitleUpdatingEventArgs e)
+        {
+            Text = e.NewTitle;
         }
 
         private void OnTabControlClick(object sender, EventArgs e)

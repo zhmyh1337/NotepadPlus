@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +23,10 @@ namespace NotepadPlus
 
         public static void SelectionFormatWithDialog(this RichTextBox richTextBox)
         {
-            using (var fontDialog = new FontDialog())
+            using var fontDialog = new FontDialog { Font = richTextBox.SelectionFont };
+            if (fontDialog.ShowDialog() == DialogResult.OK)
             {
-                fontDialog.Font = richTextBox.SelectionFont;
-                if (fontDialog.ShowDialog() == DialogResult.OK)
-                {
-                    richTextBox.SelectionFont = fontDialog.Font;
-                }
+                richTextBox.SelectionFont = fontDialog.Font;
             }
         }
 
@@ -35,7 +34,7 @@ namespace NotepadPlus
         {
             return ext switch
             {
-                "rtf" => RichTextBoxStreamType.RichText,
+                ".rtf" => RichTextBoxStreamType.RichText,
                 _ => RichTextBoxStreamType.PlainText
             };
         }
