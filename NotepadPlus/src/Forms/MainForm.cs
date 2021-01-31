@@ -66,5 +66,30 @@ namespace NotepadPlus
         }
 
         private readonly TabCollection _tabCollection;
+
+        private void OnCutClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.Cut();
+        }
+
+        private void OnCopyClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.Copy();
+        }
+
+        private void OnPasteClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.Paste();
+        }
+
+        private void OnUndoClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.Undo();
+        }
+
+        private void OnRedoClick(object sender, EventArgs e)
+        {
+            _tabCollection.ActiveTab.RichTextBox.Redo();
+        }
     }
 }

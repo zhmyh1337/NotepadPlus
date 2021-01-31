@@ -245,6 +245,7 @@ namespace NotepadPlus
             undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             undoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             undoToolStripMenuItem.Text = "Undo";
+            undoToolStripMenuItem.Click += new System.EventHandler(this.OnUndoClick);
             // 
             // redoToolStripMenuItem
             // 
@@ -253,6 +254,7 @@ namespace NotepadPlus
             | System.Windows.Forms.Keys.Z)));
             redoToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             redoToolStripMenuItem.Text = "Redo";
+            redoToolStripMenuItem.Click += new System.EventHandler(this.OnRedoClick);
             // 
             // toolStripSeparator3
             // 
@@ -267,6 +269,7 @@ namespace NotepadPlus
             cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             cutToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             cutToolStripMenuItem.Text = "Cut";
+            cutToolStripMenuItem.Click += new System.EventHandler(this.OnCutClick);
             // 
             // copyToolStripMenuItem
             // 
@@ -276,6 +279,7 @@ namespace NotepadPlus
             copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             copyToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             copyToolStripMenuItem.Text = "Copy";
+            copyToolStripMenuItem.Click += new System.EventHandler(this.OnCopyClick);
             // 
             // pasteToolStripMenuItem
             // 
@@ -285,6 +289,7 @@ namespace NotepadPlus
             pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             pasteToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
             pasteToolStripMenuItem.Text = "Paste";
+            pasteToolStripMenuItem.Click += new System.EventHandler(this.OnPasteClick);
             // 
             // toolStripSeparator4
             // 
@@ -364,6 +369,7 @@ namespace NotepadPlus
             cutContextToolStripMenuItem.Name = "cutContextToolStripMenuItem";
             cutContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             cutContextToolStripMenuItem.Text = "Cut";
+            cutContextToolStripMenuItem.Click += new System.EventHandler(this.OnCutClick);
             // 
             // copyContextToolStripMenuItem
             // 
@@ -372,6 +378,7 @@ namespace NotepadPlus
             copyContextToolStripMenuItem.Name = "copyContextToolStripMenuItem";
             copyContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             copyContextToolStripMenuItem.Text = "Copy";
+            copyContextToolStripMenuItem.Click += new System.EventHandler(this.OnCopyClick);
             // 
             // pasteContextToolStripMenuItem
             // 
@@ -380,6 +387,7 @@ namespace NotepadPlus
             pasteContextToolStripMenuItem.Name = "pasteContextToolStripMenuItem";
             pasteContextToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             pasteContextToolStripMenuItem.Text = "Paste";
+            pasteContextToolStripMenuItem.Click += new System.EventHandler(this.OnPasteClick);
             // 
             // toolStripSeparator5
             // 
