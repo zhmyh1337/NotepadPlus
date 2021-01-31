@@ -39,7 +39,7 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem saveAllToolStripMenuItem;
             System.Windows.Forms.ToolStripSeparator toolStripSeparator;
             System.Windows.Forms.ToolStripMenuItem newWindowToolStripMenuItem;
-            System.Windows.Forms.ToolStripMenuItem closeWindowtoolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem closeWindowToolStripMenuItem;
             System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
             System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem closeAllFilesToolStripMenuItem;
@@ -78,7 +78,7 @@ namespace NotepadPlus
             saveAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            closeWindowtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            closeWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             closeAllFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +121,7 @@ namespace NotepadPlus
             saveAllToolStripMenuItem,
             toolStripSeparator,
             newWindowToolStripMenuItem,
-            closeWindowtoolStripMenuItem,
+            closeWindowToolStripMenuItem,
             toolStripSeparator1,
             closeFileToolStripMenuItem,
             closeAllFilesToolStripMenuItem,
@@ -173,6 +173,8 @@ namespace NotepadPlus
             // saveAllToolStripMenuItem
             // 
             saveAllToolStripMenuItem.Name = "saveAllToolStripMenuItem";
+            saveAllToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.S)));
             saveAllToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             saveAllToolStripMenuItem.Text = "Save All";
             saveAllToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAllClick);
@@ -189,14 +191,16 @@ namespace NotepadPlus
             | System.Windows.Forms.Keys.N)));
             newWindowToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             newWindowToolStripMenuItem.Text = "New Window";
+            newWindowToolStripMenuItem.Click += new System.EventHandler(this.OnNewWindowClick);
             // 
-            // closeWindowtoolStripMenuItem
+            // closeWindowToolStripMenuItem
             // 
-            closeWindowtoolStripMenuItem.Name = "closeWindowtoolStripMenuItem";
-            closeWindowtoolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            closeWindowToolStripMenuItem.Name = "closeWindowToolStripMenuItem";
+            closeWindowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.W)));
-            closeWindowtoolStripMenuItem.Size = new System.Drawing.Size(291, 26);
-            closeWindowtoolStripMenuItem.Text = "Close Window";
+            closeWindowToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            closeWindowToolStripMenuItem.Text = "Close Window";
+            closeWindowToolStripMenuItem.Click += new System.EventHandler(this.OnCloseWindowClick);
             // 
             // toolStripSeparator1
             // 
@@ -226,7 +230,6 @@ namespace NotepadPlus
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             exitToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += new System.EventHandler(this.OnExitClick);
@@ -454,6 +457,7 @@ namespace NotepadPlus
             this.Name = "MainForm";
             this.Text = "123 - Notepad+";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMainFormClosed);
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();

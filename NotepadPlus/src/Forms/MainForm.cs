@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,9 +36,19 @@ namespace NotepadPlus
             e.Cancel = !_tabCollection.CloseAllTabs();
         }
 
+        private void OnMainFormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.ExitThread();
+            }
+        }
+
+        // "Exit" in "File" menu. Closes all windows.
         private void OnExitClick(object sender, EventArgs e)
         {
-            Close();
+            // Closing all forms (can be cancelled).
+            Application.OpenForms.OfType<Form>().ToList().ForEach(form => form.Close());
         }
 
         private void OnSelectAllClick(object sender, EventArgs e)
@@ -122,6 +133,16 @@ namespace NotepadPlus
         private void OnNewClick(object sender, EventArgs e)
         {
             _tabCollection.AddTab();
+        }
+
+        private void OnNewWindowClick(object sender, EventArgs e)
+        {
+            new MainForm().Show();
+        }
+
+        private void OnCloseWindowClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private readonly TabCollection _tabCollection;
