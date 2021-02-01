@@ -37,6 +37,18 @@ namespace NotepadPlus
             }
         }
 
+        public void SilentSave(string path)
+        {
+            try
+            {
+                RichTextBox.SaveFile(path, Utilities.FileExtensionToRichTextBoxStreamType(Path.GetExtension(FilePath)));
+            }
+            catch (IOException e)
+            {
+                Debug.WriteLine($"[{e.GetType()}] {e.Message} (in SilentSave).");
+            }
+        }
+
         public bool TrySave()
         {
             if (FilePath == null)
@@ -119,10 +131,10 @@ namespace NotepadPlus
             TabPage.Text = Name + (UnsavedContent ? " •" : "");
         }
 
-        private string Name
+        public string Name
         {
             get => _name;
-            set
+            private set
             {
                 _name = value;
                 UpdateDisplayedName();

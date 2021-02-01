@@ -30,7 +30,7 @@ namespace NotepadPlus
             }
         }
 
-        public static RichTextBoxStreamType FileExtensionToRichTextBoxStreamType(string ext)
+        public static RichTextBoxStreamType FileExtensionToRichTextBoxStreamType(string? ext)
         {
             return ext switch
             {

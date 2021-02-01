@@ -179,11 +179,13 @@ namespace NotepadPlus
         private void OnAutosaveTimerTick(object sender, EventArgs e)
         {
             Debug.WriteLine("Autosave timer tick.");
+            _tabCollection.ForEach(tab => tab.SaveFromSaveAll());
         }
 
         private void OnAutologgingTimerTick(object sender, EventArgs e)
         {
             Debug.WriteLine("Autologging timer tick.");
+            _tabCollection.ForEach(tab => Autologging.LogTab(tab));
         }
 
         private void OnOptionsClick(object sender, EventArgs e)
