@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NotepadPlus.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -21,6 +23,17 @@ namespace NotepadPlus
         private void OnOptionsFormLoad(object sender, EventArgs e)
         {
             _listbox.SelectedIndex = 0;
+
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            _autosavePanel.Controls.OfType<RadioButton>().Where(
+                x => x.Name == Settings.Default.OptionsAutosaveRadiobutton).ToList().ForEach(x => x.Checked = true);
+
+            _autologgingPanel.Controls.OfType<RadioButton>().Where(
+                x => x.Name == Settings.Default.OptionsAutologgingRadiobutton).ToList().ForEach(x => x.Checked = true);
         }
 
         private void OnListboxSelectedIndexChanged(object sender, EventArgs e)
@@ -39,6 +52,22 @@ namespace NotepadPlus
                     _autologgingPanel.Visible = true;
                     break;
             }
+        }
+
+        private void OnOptionsFormClosed(object sender, FormClosedEventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            Settings.Default.OptionsAutosaveRadiobutton = _autosavePanel.Controls.OfType<RadioButton>().Where(
+                x => x.Checked == true).FirstOrDefault()?.Name;
+
+            Settings.Default.OptionsAutologgingRadiobutton = _autologgingPanel.Controls.OfType<RadioButton>().Where(
+                x => x.Checked == true).FirstOrDefault()?.Name;
+
+            Settings.Default.Save();
         }
     }
 }

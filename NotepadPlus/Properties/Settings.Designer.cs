@@ -25,13 +25,25 @@ namespace NotepadPlus.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test")]
-        public string Test {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionsAutosaveRadiobutton {
             get {
-                return ((string)(this["Test"]));
+                return ((string)(this["OptionsAutosaveRadiobutton"]));
             }
             set {
-                this["Test"] = value;
+                this["OptionsAutosaveRadiobutton"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionsAutologgingRadiobutton {
+            get {
+                return ((string)(this["OptionsAutologgingRadiobutton"]));
+            }
+            set {
+                this["OptionsAutologgingRadiobutton"] = value;
             }
         }
     }

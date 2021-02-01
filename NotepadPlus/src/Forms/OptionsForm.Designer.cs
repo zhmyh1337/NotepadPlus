@@ -224,6 +224,7 @@ namespace NotepadPlus
             this.Controls.Add(this._autologgingPanel);
             this.Name = "OptionsForm";
             this.Text = "Options";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnOptionsFormClosed);
             this.Load += new System.EventHandler(this.OnOptionsFormLoad);
             this._autosavePanel.ResumeLayout(false);
             this._autosavePanel.PerformLayout();
