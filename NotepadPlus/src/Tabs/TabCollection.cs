@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NotepadPlus
@@ -45,7 +43,7 @@ namespace NotepadPlus
         public bool Empty { get => !_tabs.Any(); }
 
         public void ForEach(Action<Tab> action) => _tabs.ForEach(action);
-        
+
         public Tab? ActiveTab
         {
             get => _tabControl.SelectedIndex == -1 ? null : _tabs[_tabControl.SelectedIndex];

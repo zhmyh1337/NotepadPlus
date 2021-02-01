@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotepadPlus
 {
@@ -43,7 +40,7 @@ namespace NotepadPlus
         public static string FormatStringAsCode(string s)
         {
             var lines = s.Split('\n');
-            
+
             var braceCounter = 0;
             var singlelineCommentOpened = false;
             var multilineCommentOpened = false;
