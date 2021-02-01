@@ -46,5 +46,16 @@ namespace NotepadPlus.Properties {
                 this["OptionsAutologgingRadiobutton"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection UnclosedTabs {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["UnclosedTabs"]));
+            }
+            set {
+                this["UnclosedTabs"] = value;
+            }
+        }
     }
 }

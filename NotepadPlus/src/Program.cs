@@ -18,7 +18,7 @@ namespace NotepadPlus
             Settings.Load();
             Settings.Apply();
 
-            new MainForm().Show();
+            new MainForm(onApplicationExitThread: (sender, e) => Settings.SaveLastOpenedTabs()).Show();
             Application.Run();
         }
 

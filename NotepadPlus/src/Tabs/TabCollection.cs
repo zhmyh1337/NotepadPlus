@@ -34,6 +34,8 @@ namespace NotepadPlus
             _tabControl.SelectedIndexChanged += (sender, e) => FixedSelectedIndexChanged.Invoke(sender, e);
         }
 
+        public bool Empty { get => _tabs.Count == 0; }
+
         public void ForEach(Action<Tab> action) => _tabs.ForEach(action);
         
         public Tab? ActiveTab
@@ -82,7 +84,7 @@ namespace NotepadPlus
             }
         }
 
-        public (bool tabWasClosed, bool lastTabWasClosed) TryCloseTab(Tab tab)
+        public (bool tabWasClosed, bool lastTabWasClosed, string? tabPath) TryCloseTab(Tab tab)
         {
             if (tab.TryClose(tabPage => _tabControl.SelectedTab = tabPage))
             {
@@ -91,29 +93,34 @@ namespace NotepadPlus
                 if (_tabs.Count == 0)
                 {
                     AddTab();
-                    return (true, true);
+                    return (true, true, tab.FilePath);
                 }
-                return (true, false);
+                return (true, false, tab.FilePath);
             }
-            return (false, false);
+            return (false, false, tab.FilePath);
         }
 
         /// <summary>
         /// Closes all tabs (with confirmation if unsaved).
         /// </summary>
         /// <returns>Whether all tabs have been closed.</returns>
-        public bool CloseAllTabs()
+        public bool CloseAllTabs(List<string>? tabPaths = null)
         {
             bool closedAllTabs = true;
 
             for (int tabIndex = 0; tabIndex < _tabs.Count; tabIndex++)
             {
-                var (tabWasClosed, lastTabWasClosed) = TryCloseTab(_tabs[tabIndex]);
+                var (tabWasClosed, lastTabWasClosed, tabPath) = TryCloseTab(_tabs[tabIndex]);
                 if (tabWasClosed == true && lastTabWasClosed == false)
                 {
                     tabIndex--;
                 }
                 closedAllTabs &= tabWasClosed;
+
+                if (tabPath != null)
+                {
+                    tabPaths?.Add(tabPath);
+                }
             }
 
             return closedAllTabs;

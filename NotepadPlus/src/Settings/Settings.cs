@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,21 @@ namespace NotepadPlus
         private readonly Timer _autosaveTimer = new Timer();
         private readonly Timer _autologgingTimer = new Timer();
 
+        public StringCollection LastOpenedTabs { get; set; }
+
         public Settings()
         {
             _autosaveTimer.Tick += (sender, e) => AutosaveTimerTick?.Invoke(sender, e);
             _autologgingTimer.Tick += (sender, e) => AutologgingTimerTick?.Invoke(sender, e);
+
+            LastOpenedTabs = Properties.Settings.Default.UnclosedTabs ?? new StringCollection();
+        }
+
+        public void SaveLastOpenedTabs()
+        {
+            Properties.Settings.Default.UnclosedTabs = LastOpenedTabs;
+
+            Properties.Settings.Default.Save();
         }
 
         public void Load()

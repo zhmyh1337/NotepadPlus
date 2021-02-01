@@ -129,10 +129,10 @@ namespace NotepadPlus
             }
         }
 
-        private string? FilePath
+        public string? FilePath
         {
             get => _filePath;
-            set
+            private set
             {
                 Name = value == null ? "untitled" : Path.GetFileName(value);
                 _filePath = value;

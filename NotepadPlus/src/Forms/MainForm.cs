@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +15,19 @@ namespace NotepadPlus
 {
     public partial class MainForm : Form
     {
+        public event EventHandler ApplicationExitThread;
+        private readonly EventHandler _onApplicationExitThread;
+
         private readonly TabCollection _tabCollection;
 
-        public MainForm()
+        public MainForm(EventHandler onApplicationExitThread)
         {
             InitializeComponent();
 
             _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip, OnMainFormTitleUpdating);
+
+            _onApplicationExitThread = onApplicationExitThread;
+            ApplicationExitThread += onApplicationExitThread;
         }
 
         private void OnMainFormTitleUpdating(object sender, MainFormTitleUpdatingEventArgs e)
@@ -30,7 +37,18 @@ namespace NotepadPlus
 
         private void OnMainFormLoad(object sender, EventArgs e)
         {
-            _tabCollection.AddTab();
+            foreach (var filePath in Program.Settings.LastOpenedTabs)
+            {
+                if (File.Exists(filePath))
+                {
+                    _tabCollection.AddTab(filePath);
+                }
+            }
+            Program.Settings.LastOpenedTabs.Clear();
+            if (_tabCollection.Empty)
+            {
+                _tabCollection.AddTab();
+            }
 
             Program.Settings.AutosaveTimerTick += OnAutosaveTimerTick;
             Program.Settings.AutologgingTimerTick += OnAutologgingTimerTick;
@@ -38,13 +56,21 @@ namespace NotepadPlus
 
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = !_tabCollection.CloseAllTabs();
+            var filePaths = new List<string>();
+            e.Cancel = !_tabCollection.CloseAllTabs(filePaths);
+            // Still closing.
+            if (!e.Cancel)
+            {
+                Program.Settings.LastOpenedTabs.Clear();
+                Program.Settings.LastOpenedTabs.AddRange(filePaths.ToArray());
+            }
         }
 
         private void OnMainFormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0)
             {
+                ApplicationExitThread?.Invoke(this, EventArgs.Empty);
                 Application.ExitThread();
             }
         }
@@ -142,7 +168,7 @@ namespace NotepadPlus
 
         private void OnNewWindowClick(object sender, EventArgs e)
         {
-            new MainForm().Show();
+            new MainForm(_onApplicationExitThread).Show();
         }
 
         private void OnCloseWindowClick(object sender, EventArgs e)
