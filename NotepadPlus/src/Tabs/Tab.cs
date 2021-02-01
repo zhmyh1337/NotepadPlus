@@ -133,6 +133,11 @@ namespace NotepadPlus
             return false;
         }
 
+        public void FormatRtbTextAsCode()
+        {
+            RichTextBox.Text = Autoformatting.FormatStringAsCode(RichTextBox.Text);
+        }
+
         private void OnRtbTextChanged(object? sender, EventArgs e)
         {
             UnsavedContent = true;

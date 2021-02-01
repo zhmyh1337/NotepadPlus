@@ -57,8 +57,9 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem formatToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem formatSelectionToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem formalAllToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem formatAutoformatAsCodeToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-            System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
             System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem cutContextToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem copyContextToolStripMenuItem;
@@ -99,8 +100,9 @@ namespace NotepadPlus
             formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             formatSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             formalAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            formatAutoformatAsCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             cutContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             copyContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -325,7 +327,8 @@ namespace NotepadPlus
             // 
             formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             formatSelectionToolStripMenuItem,
-            formalAllToolStripMenuItem});
+            formalAllToolStripMenuItem,
+            formatAutoformatAsCodeToolStripMenuItem});
             formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             formatToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             formatToolStripMenuItem.Text = "F&ormat";
@@ -333,39 +336,33 @@ namespace NotepadPlus
             // formatSelectionToolStripMenuItem
             // 
             formatSelectionToolStripMenuItem.Name = "formatSelectionToolStripMenuItem";
-            formatSelectionToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            formatSelectionToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             formatSelectionToolStripMenuItem.Text = "Format Selection...";
             formatSelectionToolStripMenuItem.Click += new System.EventHandler(this.OnFormatSelectionClick);
             // 
             // formalAllToolStripMenuItem
             // 
             formalAllToolStripMenuItem.Name = "formalAllToolStripMenuItem";
-            formalAllToolStripMenuItem.Size = new System.Drawing.Size(213, 26);
+            formalAllToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             formalAllToolStripMenuItem.Text = "Formal All...";
             formalAllToolStripMenuItem.Click += new System.EventHandler(this.OnFormatAllClick);
+            // 
+            // formatAutoformatAsCodeToolStripMenuItem
+            // 
+            formatAutoformatAsCodeToolStripMenuItem.Name = "formatAutoformatAsCodeToolStripMenuItem";
+            formatAutoformatAsCodeToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            formatAutoformatAsCodeToolStripMenuItem.Text = "Autoformat As Code";
+            formatAutoformatAsCodeToolStripMenuItem.Click += new System.EventHandler(this.OnAutoformatAsCodeClick);
             // 
             // toolsToolStripMenuItem
             // 
             toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            customizeToolStripMenuItem,
-            optionsToolStripMenuItem,
-            this._versionHistoryToolStripMenuItem});
+            this._versionHistoryToolStripMenuItem,
+            toolStripSeparator7,
+            optionsToolStripMenuItem});
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             toolsToolStripMenuItem.Text = "&Tools";
-            // 
-            // customizeToolStripMenuItem
-            // 
-            customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            customizeToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            customizeToolStripMenuItem.Text = "Customize";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
-            optionsToolStripMenuItem.Text = "Options";
-            optionsToolStripMenuItem.Click += new System.EventHandler(this.OnOptionsClick);
             // 
             // _versionHistoryToolStripMenuItem
             // 
@@ -373,6 +370,18 @@ namespace NotepadPlus
             this._versionHistoryToolStripMenuItem.Name = "_versionHistoryToolStripMenuItem";
             this._versionHistoryToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this._versionHistoryToolStripMenuItem.Text = "Version History";
+            // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(188, 6);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
+            optionsToolStripMenuItem.Text = "Options...";
+            optionsToolStripMenuItem.Click += new System.EventHandler(this.OnOptionsClick);
             // 
             // cutContextToolStripMenuItem
             // 
