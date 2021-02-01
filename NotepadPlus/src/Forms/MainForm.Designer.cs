@@ -61,6 +61,8 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
             System.Windows.Forms.MenuStrip menuStrip;
+            System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem runRunToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem cutContextToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem copyContextToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem pasteContextToolStripMenuItem;
@@ -100,6 +102,8 @@ namespace NotepadPlus
             customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip = new System.Windows.Forms.MenuStrip();
+            runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            runRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             cutContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             copyContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pasteContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -218,6 +222,8 @@ namespace NotepadPlus
             // closeAllFilesToolStripMenuItem
             // 
             closeAllFilesToolStripMenuItem.Name = "closeAllFilesToolStripMenuItem";
+            closeAllFilesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.W)));
             closeAllFilesToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
             closeAllFilesToolStripMenuItem.Text = "Close All Files";
             closeAllFilesToolStripMenuItem.Click += new System.EventHandler(this.OnCloseAllFilesClick);
@@ -357,6 +363,7 @@ namespace NotepadPlus
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             optionsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             optionsToolStripMenuItem.Text = "Options";
+            optionsToolStripMenuItem.Click += new System.EventHandler(this.OnOptionsClick);
             // 
             // menuStrip
             // 
@@ -365,12 +372,28 @@ namespace NotepadPlus
             fileToolStripMenuItem,
             editToolStripMenuItem,
             formatToolStripMenuItem,
-            toolsToolStripMenuItem});
+            toolsToolStripMenuItem,
+            runToolStripMenuItem});
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new System.Drawing.Size(757, 28);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip";
+            // 
+            // runToolStripMenuItem
+            // 
+            runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            runRunToolStripMenuItem});
+            runToolStripMenuItem.Name = "runToolStripMenuItem";
+            runToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            runToolStripMenuItem.Text = "&Run";
+            // 
+            // runRunToolStripMenuItem
+            // 
+            runRunToolStripMenuItem.Name = "runRunToolStripMenuItem";
+            runRunToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            runRunToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            runRunToolStripMenuItem.Text = "Run";
             // 
             // cutContextToolStripMenuItem
             // 
@@ -455,7 +478,7 @@ namespace NotepadPlus
             this.Controls.Add(menuStrip);
             this.MainMenuStrip = menuStrip;
             this.Name = "MainForm";
-            this.Text = "123 - Notepad+";
+            this.Text = "untitled - Notepad+";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnMainFormClosed);
             this.Load += new System.EventHandler(this.OnMainFormLoad);

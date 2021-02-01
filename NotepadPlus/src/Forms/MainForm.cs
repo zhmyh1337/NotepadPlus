@@ -14,6 +14,8 @@ namespace NotepadPlus
 {
     public partial class MainForm : Form
     {
+        private readonly TabCollection _tabCollection;
+
         public MainForm()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace NotepadPlus
         private void OnExitClick(object sender, EventArgs e)
         {
             // Closing all forms (can be cancelled).
-            Application.OpenForms.OfType<Form>().ToList().ForEach(form => form.Close());
+            Application.OpenForms.Cast<Form>().ToList().ForEach(form => form.Close());
         }
 
         private void OnSelectAllClick(object sender, EventArgs e)
@@ -145,6 +147,9 @@ namespace NotepadPlus
             Close();
         }
 
-        private readonly TabCollection _tabCollection;
+        private void OnOptionsClick(object sender, EventArgs e)
+        {
+            new OptionsForm().ShowDialog();
+        }
     }
 }
