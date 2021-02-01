@@ -31,6 +31,9 @@ namespace NotepadPlus
         {
             System.Windows.Forms.Label autosaveLabel;
             System.Windows.Forms.Label autologgingLabel;
+            System.Windows.Forms.Label compilationLabel;
+            System.Windows.Forms.Label compilationLabel1;
+            this._totallyNotARickroll = new System.Windows.Forms.Panel();
             this._listbox = new System.Windows.Forms.ListBox();
             this._autosavePanel = new System.Windows.Forms.Panel();
             this._autosaveRadioButton5 = new System.Windows.Forms.RadioButton();
@@ -44,10 +47,17 @@ namespace NotepadPlus
             this._autologgingRadioButton3 = new System.Windows.Forms.RadioButton();
             this._autologgingRadioButton2 = new System.Windows.Forms.RadioButton();
             this._autologgingRadioButton1 = new System.Windows.Forms.RadioButton();
+            this._compilationPanel = new System.Windows.Forms.Panel();
+            this._compilerPathTextBox = new System.Windows.Forms.TextBox();
+            this._compilationRedirectStderrRadioButton = new System.Windows.Forms.RadioButton();
+            this._compilationRedirectStdoutRadioButton = new System.Windows.Forms.RadioButton();
             autosaveLabel = new System.Windows.Forms.Label();
             autologgingLabel = new System.Windows.Forms.Label();
+            compilationLabel = new System.Windows.Forms.Label();
+            compilationLabel1 = new System.Windows.Forms.Label();
             this._autosavePanel.SuspendLayout();
             this._autologgingPanel.SuspendLayout();
+            this._compilationPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // autosaveLabel
@@ -67,6 +77,24 @@ namespace NotepadPlus
             autologgingLabel.Size = new System.Drawing.Size(93, 20);
             autologgingLabel.TabIndex = 2;
             autologgingLabel.Text = "Autologging";
+            // 
+            // compilationLabel
+            // 
+            compilationLabel.AutoSize = true;
+            compilationLabel.Location = new System.Drawing.Point(10, 0);
+            compilationLabel.Name = "compilationLabel";
+            compilationLabel.Size = new System.Drawing.Size(91, 20);
+            compilationLabel.TabIndex = 2;
+            compilationLabel.Text = "Compilation";
+            // 
+            // _totallyNotARickroll
+            // 
+            this._totallyNotARickroll.BackColor = System.Drawing.SystemColors.Control;
+            this._totallyNotARickroll.Location = new System.Drawing.Point(543, 0);
+            this._totallyNotARickroll.Name = "_totallyNotARickroll";
+            this._totallyNotARickroll.Size = new System.Drawing.Size(10, 12);
+            this._totallyNotARickroll.TabIndex = 7;
+            this._totallyNotARickroll.DoubleClick += new System.EventHandler(this.OnTotallyNotARickrollDoubleClick);
             // 
             // _listbox
             // 
@@ -214,12 +242,66 @@ namespace NotepadPlus
             this._autologgingRadioButton1.Text = "No autologging";
             this._autologgingRadioButton1.UseVisualStyleBackColor = true;
             // 
+            // _compilationPanel
+            // 
+            this._compilationPanel.Controls.Add(compilationLabel1);
+            this._compilationPanel.Controls.Add(this._compilerPathTextBox);
+            this._compilationPanel.Controls.Add(compilationLabel);
+            this._compilationPanel.Controls.Add(this._compilationRedirectStderrRadioButton);
+            this._compilationPanel.Controls.Add(this._compilationRedirectStdoutRadioButton);
+            this._compilationPanel.Location = new System.Drawing.Point(169, 12);
+            this._compilationPanel.Name = "_compilationPanel";
+            this._compilationPanel.Size = new System.Drawing.Size(373, 244);
+            this._compilationPanel.TabIndex = 6;
+            // 
+            // _compilerPathTextBox
+            // 
+            this._compilerPathTextBox.Location = new System.Drawing.Point(113, 33);
+            this._compilerPathTextBox.Name = "_compilerPathTextBox";
+            this._compilerPathTextBox.ReadOnly = true;
+            this._compilerPathTextBox.Size = new System.Drawing.Size(249, 27);
+            this._compilerPathTextBox.TabIndex = 3;
+            this._compilerPathTextBox.DoubleClick += new System.EventHandler(this.OnCompilerPathTextboxDoubleClick);
+            // 
+            // _compilationRedirectStderrRadioButton
+            // 
+            this._compilationRedirectStderrRadioButton.AutoSize = true;
+            this._compilationRedirectStderrRadioButton.Location = new System.Drawing.Point(198, 83);
+            this._compilationRedirectStderrRadioButton.Name = "_compilationRedirectStderrRadioButton";
+            this._compilationRedirectStderrRadioButton.Size = new System.Drawing.Size(127, 24);
+            this._compilationRedirectStderrRadioButton.TabIndex = 1;
+            this._compilationRedirectStderrRadioButton.Text = "Redirect stderr";
+            this._compilationRedirectStderrRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _compilationRedirectStdoutRadioButton
+            // 
+            this._compilationRedirectStdoutRadioButton.AutoSize = true;
+            this._compilationRedirectStdoutRadioButton.Checked = true;
+            this._compilationRedirectStdoutRadioButton.Location = new System.Drawing.Point(36, 83);
+            this._compilationRedirectStdoutRadioButton.Name = "_compilationRedirectStdoutRadioButton";
+            this._compilationRedirectStdoutRadioButton.Size = new System.Drawing.Size(131, 24);
+            this._compilationRedirectStdoutRadioButton.TabIndex = 0;
+            this._compilationRedirectStdoutRadioButton.TabStop = true;
+            this._compilationRedirectStdoutRadioButton.Text = "Redirect stdout";
+            this._compilationRedirectStdoutRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // compilationLabel1
+            // 
+            compilationLabel1.AutoSize = true;
+            compilationLabel1.Location = new System.Drawing.Point(0, 36);
+            compilationLabel1.Name = "compilationLabel1";
+            compilationLabel1.Size = new System.Drawing.Size(107, 20);
+            compilationLabel1.TabIndex = 4;
+            compilationLabel1.Text = "Compiler path:";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 267);
+            this.Controls.Add(this._totallyNotARickroll);
             this.Controls.Add(this._listbox);
+            this.Controls.Add(this._compilationPanel);
             this.Controls.Add(this._autosavePanel);
             this.Controls.Add(this._autologgingPanel);
             this.Name = "OptionsForm";
@@ -230,6 +312,8 @@ namespace NotepadPlus
             this._autosavePanel.PerformLayout();
             this._autologgingPanel.ResumeLayout(false);
             this._autologgingPanel.PerformLayout();
+            this._compilationPanel.ResumeLayout(false);
+            this._compilationPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +333,10 @@ namespace NotepadPlus
         private System.Windows.Forms.RadioButton _autologgingRadioButton3;
         private System.Windows.Forms.RadioButton _autologgingRadioButton2;
         private System.Windows.Forms.RadioButton _autologgingRadioButton1;
+        private System.Windows.Forms.Panel _totallyNotARickroll;
+        private System.Windows.Forms.Panel _compilationPanel;
+        private System.Windows.Forms.RadioButton _compilationRedirectStderrRadioButton;
+        private System.Windows.Forms.RadioButton _compilationRedirectStdoutRadioButton;
+        private System.Windows.Forms.TextBox _compilerPathTextBox;
     }
 }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace NotepadPlus
 
         private void OnOptionsFormLoad(object sender, EventArgs e)
         {
+            _totallyNotARickroll.VisibleChanged += (sender, e) => _totallyNotARickroll.Visible = true;
             _listbox.SelectedIndex = 0;
 
             LoadSettings();
@@ -28,6 +30,28 @@ namespace NotepadPlus
 
             _autologgingPanel.Controls.OfType<RadioButton>().Where(
                 x => x.Name == Program.Settings.AutologgingRadiobutton).ToList().ForEach(x => x.Checked = true);
+
+            _compilationPanel.Controls.OfType<RadioButton>().Where(
+                x => x.Name == Program.Settings.CompilingRadiobutton).ToList().ForEach(x => x.Checked = true);
+
+            _compilerPathTextBox.Text = Program.Settings.CompilingCompilerPath;
+        }
+
+        private void SaveSettings()
+        {
+            Program.Settings.AutosaveRadiobutton = _autosavePanel.Controls.OfType<RadioButton>().Where(
+                x => x.Checked == true).FirstOrDefault()?.Name;
+
+            Program.Settings.AutologgingRadiobutton = _autologgingPanel.Controls.OfType<RadioButton>().Where(
+                x => x.Checked == true).FirstOrDefault()?.Name;
+
+            Program.Settings.CompilingRadiobutton = _compilationPanel.Controls.OfType<RadioButton>().Where(
+                x => x.Checked == true).FirstOrDefault()?.Name;
+
+            Program.Settings.CompilingCompilerPath = _compilerPathTextBox.Text;
+
+            Program.Settings.Save();
+            Program.Settings.Apply();
         }
 
         private void OnListboxSelectedIndexChanged(object sender, EventArgs e)
@@ -45,6 +69,9 @@ namespace NotepadPlus
                 case 1:
                     _autologgingPanel.Visible = true;
                     break;
+                case 3:
+                    _compilationPanel.Visible = true;
+                    break;
             }
         }
 
@@ -53,16 +80,28 @@ namespace NotepadPlus
             SaveSettings();
         }
 
-        private void SaveSettings()
+        private void OnTotallyNotARickrollDoubleClick(object sender, EventArgs args)
         {
-            Program.Settings.AutosaveRadiobutton = _autosavePanel.Controls.OfType<RadioButton>().Where(
-                x => x.Checked == true).FirstOrDefault()?.Name;
+            try
+            {
+                Process.Start(new ProcessStartInfo("https://www.youtube.com/watch?v=DLzxrzFCyOs") { UseShellExecute = true });
+            }
+            catch (SystemException e)
+            {
+                Debug.WriteLine($"[{e.GetType()}] {e.Message}.");
+            }
+        }
 
-            Program.Settings.AutologgingRadiobutton = _autologgingPanel.Controls.OfType<RadioButton>().Where(
-                x => x.Checked == true).FirstOrDefault()?.Name;
-
-            Program.Settings.Save();
-            Program.Settings.Apply();
+        private void OnCompilerPathTextboxDoubleClick(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Executable file (*.exe)|*.exe"
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _compilerPathTextBox.Text = dialog.FileName;
+            }
         }
     }
 }

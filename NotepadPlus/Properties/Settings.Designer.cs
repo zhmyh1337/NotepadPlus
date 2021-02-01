@@ -57,5 +57,29 @@ namespace NotepadPlus.Properties {
                 this["UnclosedTabs"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionsCompilingRadiobutton {
+            get {
+                return ((string)(this["OptionsCompilingRadiobutton"]));
+            }
+            set {
+                this["OptionsCompilingRadiobutton"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionsCompilingCompilerPath {
+            get {
+                return ((string)(this["OptionsCompilingCompilerPath"]));
+            }
+            set {
+                this["OptionsCompilingCompilerPath"] = value;
+            }
+        }
     }
 }

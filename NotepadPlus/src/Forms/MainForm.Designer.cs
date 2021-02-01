@@ -68,8 +68,8 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
             System.Windows.Forms.ToolStripMenuItem formatSelectionContextToolStripMenuItem;
             System.Windows.Forms.MenuStrip menuStrip;
-            System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
-            System.Windows.Forms.ToolStripMenuItem runRunToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem compileToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem compileCompileToolStripMenuItem;
             this._versionHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._rtbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._tabControl = new System.Windows.Forms.TabControl();
@@ -110,8 +110,8 @@ namespace NotepadPlus
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             formatSelectionContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip = new System.Windows.Forms.MenuStrip();
-            runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            runRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            compileCompileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
             this._rtbContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -433,7 +433,7 @@ namespace NotepadPlus
             editToolStripMenuItem,
             formatToolStripMenuItem,
             toolsToolStripMenuItem,
-            runToolStripMenuItem});
+            compileToolStripMenuItem});
             menuStrip.Location = new System.Drawing.Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new System.Drawing.Size(757, 28);
@@ -441,20 +441,21 @@ namespace NotepadPlus
             menuStrip.Tag = "";
             menuStrip.Text = "menuStrip";
             // 
-            // runToolStripMenuItem
+            // compileToolStripMenuItem
             // 
-            runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            runRunToolStripMenuItem});
-            runToolStripMenuItem.Name = "runToolStripMenuItem";
-            runToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
-            runToolStripMenuItem.Text = "&Run";
+            compileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            compileCompileToolStripMenuItem});
+            compileToolStripMenuItem.Name = "compileToolStripMenuItem";
+            compileToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            compileToolStripMenuItem.Text = "&Compile";
             // 
-            // runRunToolStripMenuItem
+            // compileCompileToolStripMenuItem
             // 
-            runRunToolStripMenuItem.Name = "runRunToolStripMenuItem";
-            runRunToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            runRunToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            runRunToolStripMenuItem.Text = "Run";
+            compileCompileToolStripMenuItem.Name = "compileCompileToolStripMenuItem";
+            compileCompileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            compileCompileToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            compileCompileToolStripMenuItem.Text = "Compile";
+            compileCompileToolStripMenuItem.Click += new System.EventHandler(this.OnCompileClick);
             // 
             // _rtbContextMenuStrip
             // 

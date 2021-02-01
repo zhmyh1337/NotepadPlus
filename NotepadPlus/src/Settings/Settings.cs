@@ -18,6 +18,8 @@ namespace NotepadPlus
 
         public string? AutosaveRadiobutton { get; set; }
         public string? AutologgingRadiobutton { get; set; }
+        public string? CompilingRadiobutton { get; set; }
+        public string? CompilingCompilerPath { get; set; }
 
         private readonly Timer _autosaveTimer = new Timer();
         private readonly Timer _autologgingTimer = new Timer();
@@ -43,12 +45,16 @@ namespace NotepadPlus
         {
             AutosaveRadiobutton = Properties.Settings.Default.OptionsAutosaveRadiobutton;
             AutologgingRadiobutton = Properties.Settings.Default.OptionsAutologgingRadiobutton;
+            CompilingRadiobutton = Properties.Settings.Default.OptionsCompilingRadiobutton;
+            CompilingCompilerPath = Properties.Settings.Default.OptionsCompilingCompilerPath;
         }
 
         public void Save()
         {
             Properties.Settings.Default.OptionsAutosaveRadiobutton = AutosaveRadiobutton;
             Properties.Settings.Default.OptionsAutologgingRadiobutton = AutologgingRadiobutton;
+            Properties.Settings.Default.OptionsCompilingRadiobutton = CompilingRadiobutton;
+            Properties.Settings.Default.OptionsCompilingCompilerPath = CompilingCompilerPath;
 
             Properties.Settings.Default.Save();
         }
