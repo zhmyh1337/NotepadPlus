@@ -22,6 +22,7 @@ namespace NotepadPlus
         private event EventHandler FixedSelectedIndexChanged;
 
         public TabCollection(TabControl tabControl, ContextMenuStrip rtbContextMenuStrip,
+            ToolStripMenuItem versionHistoryToolStripMenuItem,
             MainFormTitleUpdatingEventHandler mainFormTitleUpdatingEventHandler)
         {
             _tabControl = tabControl;
@@ -29,12 +30,19 @@ namespace NotepadPlus
 
             MainFormTitleUpdating += mainFormTitleUpdatingEventHandler;
             FixedSelectedIndexChanged += MainFormTitleUpdate;
+            FixedSelectedIndexChanged += (sender, e) =>
+            {
+                if (ActiveTab != null)
+                {
+                    Autologging.UpdateLogsDropDownMenu(versionHistoryToolStripMenuItem, ActiveTab);
+                }
+            };
 
             _tabControl.Click += OnTabControlClick;
             _tabControl.SelectedIndexChanged += (sender, e) => FixedSelectedIndexChanged.Invoke(sender, e);
         }
 
-        public bool Empty { get => _tabs.Count == 0; }
+        public bool Empty { get => !_tabs.Any(); }
 
         public void ForEach(Action<Tab> action) => _tabs.ForEach(action);
         
@@ -55,7 +63,7 @@ namespace NotepadPlus
                 {
                     richTextBox.LoadFile(filePath, Utilities.FileExtensionToRichTextBoxStreamType(Path.GetExtension(filePath)));
                 }
-                catch (IOException e)
+                catch (SystemException e)
                 {
                     Debug.WriteLine($"[{e.GetType()}] {e.Message}");
                     MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

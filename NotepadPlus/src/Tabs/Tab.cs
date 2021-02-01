@@ -37,6 +37,18 @@ namespace NotepadPlus
             }
         }
 
+        public void SilentLoad(string path)
+        {
+            try
+            {
+                RichTextBox.LoadFile(path, Utilities.FileExtensionToRichTextBoxStreamType(Path.GetExtension(FilePath)));
+            }
+            catch (SystemException e)
+            {
+                Debug.WriteLine($"[{e.GetType()}] {e.Message} (in SilentLoad).");
+            }
+        }
+
         public void SilentSave(string path)
         {
             try

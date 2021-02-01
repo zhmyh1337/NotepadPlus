@@ -24,7 +24,8 @@ namespace NotepadPlus
         {
             InitializeComponent();
 
-            _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip, OnMainFormTitleUpdating);
+            _tabCollection = new TabCollection(_tabControl, _rtbContextMenuStrip,
+                _versionHistoryToolStripMenuItem, OnMainFormTitleUpdating);
 
             _onApplicationExitThread = onApplicationExitThread;
             ApplicationExitThread += onApplicationExitThread;
@@ -186,6 +187,7 @@ namespace NotepadPlus
         {
             Debug.WriteLine("Autologging timer tick.");
             _tabCollection.ForEach(tab => Autologging.LogTab(tab));
+            Autologging.UpdateLogsDropDownMenu(_versionHistoryToolStripMenuItem, _tabCollection.ActiveTab);
         }
 
         private void OnOptionsClick(object sender, EventArgs e)

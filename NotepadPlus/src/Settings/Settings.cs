@@ -85,7 +85,7 @@ namespace NotepadPlus
 
             var interval = AutologgingRadiobutton switch
             {
-                "_autologgingRadioButton2" => 1 * 60 * 100/*0*/,
+                "_autologgingRadioButton2" => 1 * 60 * 1000,
                 "_autologgingRadioButton3" => 5 * 60 * 1000,
                 "_autologgingRadioButton4" => 10 * 60 * 1000,
                 "_autologgingRadioButton5" => 30 * 60 * 1000,

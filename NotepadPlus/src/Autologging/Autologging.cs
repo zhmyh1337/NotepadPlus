@@ -20,6 +20,10 @@ namespace NotepadPlus
 
         private static string? SearchForStoringPath(string pathInfo)
         {
+            if (!Directory.Exists(_autologgingDir))
+            {
+                return null;
+            }
             foreach (var dir in new DirectoryInfo(_autologgingDir).EnumerateDirectories())
             {
                 try
@@ -57,8 +61,47 @@ namespace NotepadPlus
             var pathInfo = tab.FilePath ?? tab.Name;
             var pathToStore = SearchForStoringPath(pathInfo) ?? CreateStoringPath(pathInfo);
 
-            var fileName = $"{tab.Name}_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}";
+            var fileName = $"{tab.Name}_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}";
             tab.SilentSave(Path.Combine(pathToStore, fileName));
+        }
+
+        public static void UpdateLogsDropDownMenu(ToolStripMenuItem parentItem, Tab tab)
+        {
+            parentItem.DropDownItems.Clear();
+
+            var allTabLogPaths = GetAllTabLogPaths(tab);
+            if (!allTabLogPaths.Any())
+            {
+                parentItem.Enabled = false;
+                return;
+            }
+
+            // Reversing to keep the latest logs on top.
+            var allTabLogPathsReversed = allTabLogPaths.Reverse();
+
+            foreach (var logPath in allTabLogPathsReversed)
+            {
+                parentItem.DropDownItems.Add(Path.GetFileName(logPath)).Click +=
+                    (sender, e) => tab.SilentLoad(logPath);
+            }
+            parentItem.Enabled = true;
+        }
+
+        private static IEnumerable<string> GetAllTabLogPaths(Tab tab)
+        {
+            var pathInfo = tab.FilePath ?? tab.Name;
+            var storingPath = SearchForStoringPath(pathInfo);
+            if (storingPath == null)
+            {
+                yield break;
+            }
+            foreach (var file in new DirectoryInfo(storingPath).EnumerateFiles())
+            {
+                if (file.Name != PathInfoFileName)
+                {
+                    yield return file.FullName;
+                }
+            }
         }
 
         private const string PathInfoFileName = "path";

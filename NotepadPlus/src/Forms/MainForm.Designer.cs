@@ -60,9 +60,6 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-            System.Windows.Forms.MenuStrip menuStrip;
-            System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
-            System.Windows.Forms.ToolStripMenuItem runRunToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem cutContextToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem copyContextToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem pasteContextToolStripMenuItem;
@@ -70,6 +67,10 @@ namespace NotepadPlus
             System.Windows.Forms.ToolStripMenuItem selectAllContextToolStripMenuItem;
             System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
             System.Windows.Forms.ToolStripMenuItem formatSelectionContextToolStripMenuItem;
+            System.Windows.Forms.MenuStrip menuStrip;
+            System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem runRunToolStripMenuItem;
+            this._versionHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._rtbContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._tabControl = new System.Windows.Forms.TabControl();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,9 +102,6 @@ namespace NotepadPlus
             toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             customizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            menuStrip = new System.Windows.Forms.MenuStrip();
-            runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            runRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             cutContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             copyContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pasteContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,6 +109,9 @@ namespace NotepadPlus
             selectAllContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             formatSelectionContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            menuStrip = new System.Windows.Forms.MenuStrip();
+            runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            runRunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
             this._rtbContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -347,7 +348,8 @@ namespace NotepadPlus
             // 
             toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             customizeToolStripMenuItem,
-            optionsToolStripMenuItem});
+            optionsToolStripMenuItem,
+            this._versionHistoryToolStripMenuItem});
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             toolsToolStripMenuItem.Text = "&Tools";
@@ -355,45 +357,22 @@ namespace NotepadPlus
             // customizeToolStripMenuItem
             // 
             customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            customizeToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            customizeToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             customizeToolStripMenuItem.Text = "Customize";
             // 
             // optionsToolStripMenuItem
             // 
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            optionsToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             optionsToolStripMenuItem.Text = "Options";
             optionsToolStripMenuItem.Click += new System.EventHandler(this.OnOptionsClick);
             // 
-            // menuStrip
+            // _versionHistoryToolStripMenuItem
             // 
-            menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            fileToolStripMenuItem,
-            editToolStripMenuItem,
-            formatToolStripMenuItem,
-            toolsToolStripMenuItem,
-            runToolStripMenuItem});
-            menuStrip.Location = new System.Drawing.Point(0, 0);
-            menuStrip.Name = "menuStrip";
-            menuStrip.Size = new System.Drawing.Size(757, 28);
-            menuStrip.TabIndex = 0;
-            menuStrip.Text = "menuStrip";
-            // 
-            // runToolStripMenuItem
-            // 
-            runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            runRunToolStripMenuItem});
-            runToolStripMenuItem.Name = "runToolStripMenuItem";
-            runToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
-            runToolStripMenuItem.Text = "&Run";
-            // 
-            // runRunToolStripMenuItem
-            // 
-            runRunToolStripMenuItem.Name = "runRunToolStripMenuItem";
-            runRunToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            runRunToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            runRunToolStripMenuItem.Text = "Run";
+            this._versionHistoryToolStripMenuItem.Enabled = false;
+            this._versionHistoryToolStripMenuItem.Name = "_versionHistoryToolStripMenuItem";
+            this._versionHistoryToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
+            this._versionHistoryToolStripMenuItem.Text = "Version History";
             // 
             // cutContextToolStripMenuItem
             // 
@@ -446,6 +425,37 @@ namespace NotepadPlus
             formatSelectionContextToolStripMenuItem.Text = "Format Selection...";
             formatSelectionContextToolStripMenuItem.Click += new System.EventHandler(this.OnFormatSelectionClick);
             // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            fileToolStripMenuItem,
+            editToolStripMenuItem,
+            formatToolStripMenuItem,
+            toolsToolStripMenuItem,
+            runToolStripMenuItem});
+            menuStrip.Location = new System.Drawing.Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new System.Drawing.Size(757, 28);
+            menuStrip.TabIndex = 0;
+            menuStrip.Tag = "";
+            menuStrip.Text = "menuStrip";
+            // 
+            // runToolStripMenuItem
+            // 
+            runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            runRunToolStripMenuItem});
+            runToolStripMenuItem.Name = "runToolStripMenuItem";
+            runToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            runToolStripMenuItem.Text = "&Run";
+            // 
+            // runRunToolStripMenuItem
+            // 
+            runRunToolStripMenuItem.Name = "runRunToolStripMenuItem";
+            runRunToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            runRunToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            runRunToolStripMenuItem.Text = "Run";
+            // 
             // _rtbContextMenuStrip
             // 
             this._rtbContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -494,6 +504,7 @@ namespace NotepadPlus
 
         private System.Windows.Forms.TabControl _tabControl;
         private System.Windows.Forms.ContextMenuStrip _rtbContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem _versionHistoryToolStripMenuItem;
     }
 }
 
