@@ -33,6 +33,7 @@ namespace NotepadPlus
             System.Windows.Forms.Label autologgingLabel;
             System.Windows.Forms.Label compilationLabel;
             System.Windows.Forms.Label compilationLabel1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this._totallyNotARickroll = new System.Windows.Forms.Panel();
             this._listbox = new System.Windows.Forms.ListBox();
             this._autosavePanel = new System.Windows.Forms.Panel();
@@ -87,6 +88,15 @@ namespace NotepadPlus
             compilationLabel.TabIndex = 2;
             compilationLabel.Text = "Compilation";
             // 
+            // compilationLabel1
+            // 
+            compilationLabel1.AutoSize = true;
+            compilationLabel1.Location = new System.Drawing.Point(0, 25);
+            compilationLabel1.Name = "compilationLabel1";
+            compilationLabel1.Size = new System.Drawing.Size(107, 20);
+            compilationLabel1.TabIndex = 4;
+            compilationLabel1.Text = "Compiler path:";
+            // 
             // _totallyNotARickroll
             // 
             this._totallyNotARickroll.BackColor = System.Drawing.SystemColors.Control;
@@ -103,7 +113,6 @@ namespace NotepadPlus
             this._listbox.Items.AddRange(new object[] {
             "Autosave",
             "Autologging",
-            "Syntax coloring (C#)",
             "Compilation"});
             this._listbox.Location = new System.Drawing.Point(12, 12);
             this._listbox.Name = "_listbox";
@@ -256,7 +265,7 @@ namespace NotepadPlus
             // 
             // _compilerPathTextBox
             // 
-            this._compilerPathTextBox.Location = new System.Drawing.Point(113, 33);
+            this._compilerPathTextBox.Location = new System.Drawing.Point(113, 22);
             this._compilerPathTextBox.Name = "_compilerPathTextBox";
             this._compilerPathTextBox.ReadOnly = true;
             this._compilerPathTextBox.Size = new System.Drawing.Size(249, 27);
@@ -266,7 +275,7 @@ namespace NotepadPlus
             // _compilationRedirectStderrRadioButton
             // 
             this._compilationRedirectStderrRadioButton.AutoSize = true;
-            this._compilationRedirectStderrRadioButton.Location = new System.Drawing.Point(198, 83);
+            this._compilationRedirectStderrRadioButton.Location = new System.Drawing.Point(198, 72);
             this._compilationRedirectStderrRadioButton.Name = "_compilationRedirectStderrRadioButton";
             this._compilationRedirectStderrRadioButton.Size = new System.Drawing.Size(127, 24);
             this._compilationRedirectStderrRadioButton.TabIndex = 1;
@@ -277,22 +286,13 @@ namespace NotepadPlus
             // 
             this._compilationRedirectStdoutRadioButton.AutoSize = true;
             this._compilationRedirectStdoutRadioButton.Checked = true;
-            this._compilationRedirectStdoutRadioButton.Location = new System.Drawing.Point(36, 83);
+            this._compilationRedirectStdoutRadioButton.Location = new System.Drawing.Point(36, 72);
             this._compilationRedirectStdoutRadioButton.Name = "_compilationRedirectStdoutRadioButton";
             this._compilationRedirectStdoutRadioButton.Size = new System.Drawing.Size(131, 24);
             this._compilationRedirectStdoutRadioButton.TabIndex = 0;
             this._compilationRedirectStdoutRadioButton.TabStop = true;
             this._compilationRedirectStdoutRadioButton.Text = "Redirect stdout";
             this._compilationRedirectStdoutRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // compilationLabel1
-            // 
-            compilationLabel1.AutoSize = true;
-            compilationLabel1.Location = new System.Drawing.Point(0, 36);
-            compilationLabel1.Name = "compilationLabel1";
-            compilationLabel1.Size = new System.Drawing.Size(107, 20);
-            compilationLabel1.TabIndex = 4;
-            compilationLabel1.Text = "Compiler path:";
             // 
             // OptionsForm
             // 
@@ -304,6 +304,7 @@ namespace NotepadPlus
             this.Controls.Add(this._compilationPanel);
             this.Controls.Add(this._autosavePanel);
             this.Controls.Add(this._autologgingPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OptionsForm";
             this.Text = "Options";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnOptionsFormClosed);

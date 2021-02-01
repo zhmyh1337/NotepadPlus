@@ -69,7 +69,7 @@ namespace NotepadPlus
                 case 1:
                     _autologgingPanel.Visible = true;
                     break;
-                case 3:
+                case 2:
                     _compilationPanel.Visible = true;
                     break;
             }

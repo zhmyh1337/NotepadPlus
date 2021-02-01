@@ -496,6 +496,7 @@ namespace NotepadPlus
             this.ClientSize = new System.Drawing.Size(757, 548);
             this.Controls.Add(this._tabControl);
             this.Controls.Add(menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = menuStrip;
             this.Name = "MainForm";
             this.Text = "untitled - Notepad+";
