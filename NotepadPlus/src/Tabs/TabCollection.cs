@@ -28,10 +28,10 @@ namespace NotepadPlus
             _rtbContextMenuStrip = rtbContextMenuStrip;
 
             MainFormTitleUpdating += mainFormTitleUpdatingEventHandler;
-            _tabControl.Click += OnTabControlClick;
-            _tabControl.SelectedIndexChanged += FixedSelectedIndexChanged;
-
             FixedSelectedIndexChanged += MainFormTitleUpdate;
+
+            _tabControl.Click += OnTabControlClick;
+            _tabControl.SelectedIndexChanged += (sender, e) => FixedSelectedIndexChanged.Invoke(sender, e);
         }
 
         public void ForEach(Action<Tab> action) => _tabs.ForEach(action);

@@ -1,14 +1,8 @@
-﻿using NotepadPlus.Properties;
+﻿#nullable enable
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NotepadPlus
@@ -30,10 +24,10 @@ namespace NotepadPlus
         private void LoadSettings()
         {
             _autosavePanel.Controls.OfType<RadioButton>().Where(
-                x => x.Name == Settings.Default.OptionsAutosaveRadiobutton).ToList().ForEach(x => x.Checked = true);
+                x => x.Name == Program.Settings.AutosaveRadiobutton).ToList().ForEach(x => x.Checked = true);
 
             _autologgingPanel.Controls.OfType<RadioButton>().Where(
-                x => x.Name == Settings.Default.OptionsAutologgingRadiobutton).ToList().ForEach(x => x.Checked = true);
+                x => x.Name == Program.Settings.AutologgingRadiobutton).ToList().ForEach(x => x.Checked = true);
         }
 
         private void OnListboxSelectedIndexChanged(object sender, EventArgs e)
@@ -61,13 +55,14 @@ namespace NotepadPlus
 
         private void SaveSettings()
         {
-            Settings.Default.OptionsAutosaveRadiobutton = _autosavePanel.Controls.OfType<RadioButton>().Where(
+            Program.Settings.AutosaveRadiobutton = _autosavePanel.Controls.OfType<RadioButton>().Where(
                 x => x.Checked == true).FirstOrDefault()?.Name;
 
-            Settings.Default.OptionsAutologgingRadiobutton = _autologgingPanel.Controls.OfType<RadioButton>().Where(
+            Program.Settings.AutologgingRadiobutton = _autologgingPanel.Controls.OfType<RadioButton>().Where(
                 x => x.Checked == true).FirstOrDefault()?.Name;
 
-            Settings.Default.Save();
+            Program.Settings.Save();
+            Program.Settings.Apply();
         }
     }
 }

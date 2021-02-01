@@ -31,6 +31,9 @@ namespace NotepadPlus
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             _tabCollection.AddTab();
+
+            Program.Settings.AutosaveTimerTick += OnAutosaveTimerTick;
+            Program.Settings.AutologgingTimerTick += OnAutologgingTimerTick;
         }
 
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
@@ -145,6 +148,16 @@ namespace NotepadPlus
         private void OnCloseWindowClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void OnAutosaveTimerTick(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Autosave timer tick.");
+        }
+
+        private void OnAutologgingTimerTick(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Autologging timer tick.");
         }
 
         private void OnOptionsClick(object sender, EventArgs e)
