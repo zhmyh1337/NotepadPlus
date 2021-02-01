@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// This class contains functionality for compiling a tab.
+    /// </summary>
     static class CodeCompiling
     {
         public static void CompileTab(Tab tab)

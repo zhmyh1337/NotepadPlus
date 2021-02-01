@@ -26,6 +26,9 @@ namespace NotepadPlus
 
         public static NotepadPlus.Settings Settings { get; } = new NotepadPlus.Settings();
 
+        /// <summary>
+        /// Filters for opening/saving files.
+        /// </summary>
         public const string FormatsFilter = "All Files (*.*)|*.*|Plain Text (*.txt)|*.txt|Rich text (*.rtf)|*.rtf|C# (*.cs)|*.cs";
     }
 }

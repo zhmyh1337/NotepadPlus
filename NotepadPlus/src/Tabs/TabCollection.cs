@@ -9,8 +9,14 @@ using System.Windows.Forms;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// Container for <see cref="Tab"/>s.
+    /// </summary>
     class TabCollection
     {
+        /// <summary>
+        /// To update MainForm title (for example, when changing tabs, creating unsaved content).
+        /// </summary>
         public event MainFormTitleUpdatingEventHandler MainFormTitleUpdating;
 
         /// <summary>

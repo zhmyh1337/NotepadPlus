@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// Class for working with tabs. Contains tab's name, path and whether it has any unsaved content.
+    /// </summary>
     class Tab
     {
         public event NonNullableEventHandler UnsavedContentChanged;

@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// This class helps to work with dynamic settings
+    /// and can save/load them using the <see cref="Properties.Settings"/> functional.
+    /// </summary>
     class Settings
     {
         public event EventHandler? AutosaveTimerTick;
@@ -36,6 +40,9 @@ namespace NotepadPlus
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// Loads settings from a file.
+        /// </summary>
         public void Load()
         {
             AutosaveRadiobutton = Properties.Settings.Default.OptionsAutosaveRadiobutton;
@@ -44,6 +51,9 @@ namespace NotepadPlus
             CompilingCompilerPath = Properties.Settings.Default.OptionsCompilingCompilerPath;
         }
 
+        /// <summary>
+        /// Saves settings to a file.
+        /// </summary>
         public void Save()
         {
             Properties.Settings.Default.OptionsAutosaveRadiobutton = AutosaveRadiobutton;
@@ -54,6 +64,9 @@ namespace NotepadPlus
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// Applies changes after saving settings.
+        /// </summary>
         public void Apply()
         {
             ApplyAutosave();

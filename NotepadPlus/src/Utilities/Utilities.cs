@@ -7,6 +7,10 @@ namespace NotepadPlus
 {
     static class Utilities
     {
+        /// <summary>
+        /// Does <see cref="Action"/> <paramref name="action"/>, which can modify <paramref name="richTextBox"/> selection.
+        /// After that, restores the selection.
+        /// </summary>
         public static void DoActionKeepingSelection(this RichTextBox richTextBox, Action<RichTextBox> action)
         {
             var oldSelectionStart = richTextBox.SelectionStart;
@@ -17,6 +21,9 @@ namespace NotepadPlus
             richTextBox.Select(oldSelectionStart, oldSelectionLength);
         }
 
+        /// <summary>
+        /// Calls <see cref="FontDialog"/> and applies the result on <paramref name="richTextBox"/> selection.
+        /// </summary>
         public static void SelectionFormatWithDialog(this RichTextBox richTextBox)
         {
             using var fontDialog = new FontDialog { Font = richTextBox.SelectionFont };

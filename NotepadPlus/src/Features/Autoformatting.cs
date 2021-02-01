@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// This class contains functionality for formatting a string as code.
+    /// </summary>
     static class Autoformatting
     {
         private static void IterateBraceCounter(string s, ref int braceCounter,

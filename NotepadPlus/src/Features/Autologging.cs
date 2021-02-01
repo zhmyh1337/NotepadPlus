@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace NotepadPlus
 {
+    /// <summary>
+    /// This class performs auto-logging (backing up) files with timestamps.
+    /// </summary>
     static class Autologging
     {
         static Autologging()
@@ -16,6 +19,11 @@ namespace NotepadPlus
             Directory.CreateDirectory(_autologgingDir);
         }
 
+        /// <summary>
+        /// Looks for the existing path where all versions of the file were saved.
+        /// </summary>
+        /// <param name="pathInfo">Path of the file.</param>
+        /// <returns>Found path or null if not found.</returns>
         private static string? SearchForStoringPath(string pathInfo)
         {
             if (!Directory.Exists(_autologgingDir))
@@ -40,6 +48,11 @@ namespace NotepadPlus
             return null;
         }
 
+        /// <summary>
+        /// Creates a path where all versions of the file will be saved.
+        /// </summary>
+        /// <param name="pathInfo">Path of the file.</param>
+        /// <returns>Created path.</returns>
         private static string CreateStoringPath(string pathInfo)
         {
             string path;
@@ -54,6 +67,9 @@ namespace NotepadPlus
             return path;
         }
 
+        /// <summary>
+        /// Does the backup copy of <paramref name="tab"/>'s associated file with a timestamp.
+        /// </summary>
         public static void LogTab(Tab tab)
         {
             var pathInfo = tab.FilePath ?? tab.Name;
@@ -63,6 +79,9 @@ namespace NotepadPlus
             tab.SilentSave(Path.Combine(pathToStore, fileName));
         }
 
+        /// <summary>
+        /// Updates the dropdown menu, which contains all file's versions.
+        /// </summary>
         public static void UpdateLogsDropDownMenu(ToolStripMenuItem parentItem, Tab tab)
         {
             parentItem.DropDownItems.Clear();
@@ -85,6 +104,9 @@ namespace NotepadPlus
             parentItem.Enabled = true;
         }
 
+        /// <summary>
+        /// Gets all the paths to the backups of <paramref name="tab"/>'s associated file.
+        /// </summary>
         private static IEnumerable<string> GetAllTabLogPaths(Tab tab)
         {
             var pathInfo = tab.FilePath ?? tab.Name;
